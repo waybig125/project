@@ -1,0 +1,82 @@
+html, body{
+	overflow-x: hidden;
+	background: whitesmoke !important;
+}
+iframe{
+	overflow: hidden;
+}
+.received{
+	background: whitesmoke;
+	padding: 20px;
+	border-radius: 1rem;
+	display: inline-block;
+	margin: 20px;
+}
+.sent{
+	background: lightgreen;
+	padding: 20px;
+	border-radius: 1rem;
+	display: inline-block;
+	margin: 20px;
+}
+#message{
+	resize: none;
+	max-width: 60%;
+	font-size: 14px;
+	max-height: 200px;
+	min-height: 150px;
+	/*border: 0;*/
+	display: inline-block;
+	width: 100%;
+	letter-spacing: 1px;
+	font-family: roboto, sans-serif;
+	/*background: #29282d;*/
+	/*color: white !important;*/
+	color: gray;
+	border-radius: 10px;
+	padding: 20px !important;
+}
+#send{
+	border: 0;
+	background: white;
+	border-radius: 5px;
+	display: inline-block;
+	position: absolute;
+	right: 20px;
+	width: 10% !important;
+	/*margin-left: 5px;*/
+}
+#send .icon{
+	transition: 1s;
+}
+#send .icon:hover{
+	transform: rotate(360deg);
+}
+.icon{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	align-self: center;
+}
+::-webkit-scrollbar-track{
+  width: 12px;
+  background: linear-gradient(360deg, whitesmoke, gray);
+  border-radius: 30px;
+}
+::-webkit-scrollbar-thumb{
+  background: linear-gradient(360deg, cyan, #00b470);
+  width: 10px;
+  border-radius: 30px;
+}
+::-webkit-scrollbar{
+  background: white;
+  border-radius: 30%;
+  width: 12px;
+}
+
+
+
+
+
+
+
