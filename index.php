@@ -33,10 +33,10 @@
 	<br>
 
 	<h4 id="typing" class="text-center d-md-block d-lg-block d-sm-none d-none text-success font-80px aniview-2 reallyslow" data-av-animation="">
-		<span class="border-bottom-success">Website Title</span>&nbsp;
+		<span class="border-bottom-success">Welcome</span>&nbsp;
 	</h4>
 	<h4 id="typing2" class="text-center d-block d-sm-block d-md-none d-lg-none text-success font-50px aniview-2 reallyslow" data-av-animation="">
-		<span class="border-bottom-success">Website Title</span>&nbsp;
+		<span class="border-bottom-success">Welcome</span>&nbsp;
 	</h4>
 
 	<div class="extra"></div>

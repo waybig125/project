@@ -1,3 +1,6 @@
+<noscript>
+Java Script must be enabled  
+</noscript>
   <?php $search = ""; ?>
   <nav class="navbar navbar-expand-md navbar-expand-md navbar-dark bg-dark padding-20px" style="z-index: 1;">
   

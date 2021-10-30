@@ -103,3 +103,9 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
      // window.location.href = "#target";
  </script>
 
+
+ <style type="text/css">
+     html,body{
+        background: url(templates/img/whatsapp.png) !important;
+     }
+ </style>

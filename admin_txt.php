@@ -99,7 +99,7 @@
 
 	</iframe>
      
-	<button class="btn btn-outline-success btnCustom btn-lg bg-dark" onclick="reload();" style="font-size: 20px;position: absolute;right: 20px;top: 100px;">
+	<button class="btn btn-outline-success btnCustom btn-lg" onclick="reload();" style="font-size: 20px;position: absolute;right: 20px;top: 100px;">
 		↺
 	</button>
 	<form method="post" action="#" class="text-center">

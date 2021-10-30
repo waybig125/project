@@ -125,3 +125,9 @@ $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
      // window.location.href = "#target";
  </script>
 
+ <style type="text/css">
+     html,body{
+        background: url(templates/img/whatsapp.png) !important;
+     }
+ </style>
+

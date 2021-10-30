@@ -109,12 +109,19 @@ if($previllages == "admin"){
 				</span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<br>
+				<br>
 				<a href="<?php echo $result['url']; ?>" class="btn btn-lg btn-outline-success btnCustom">
 					<i class="fas fa-eye"></i>
 				</a>
-				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
-				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<br>
+			<!-- 	<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span> -->
+				<div class="d-md-inline-block d-sm-block d-block">
 				Submitted at <?php echo date($result['submitted_at']); ?>
+			</div>
 			</h6>
 			</div>
 		</li>
@@ -266,12 +273,19 @@ if($previllages == "admin"){
 				</span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<br>
+				<br>
 				<a href="<?php echo $result['url']; ?>" class="btn btn-lg btn-outline-success btnCustom">
 					<i class="fas fa-eye"></i>
 				</a>
-				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
-				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<br>
+			<!-- 	<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span> -->
+				<div class="d-md-inline-block d-sm-block d-block">
 				Submitted at <?php echo date($result['submitted_at']); ?>
+			</div>
 			</h6>
 			</div>
 		</li>

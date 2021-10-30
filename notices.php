@@ -102,21 +102,29 @@ if($previllages == "admin"){
 			>
 		<div class="student card-body text-left" id="<?php echo $result['id']; ?>" style="text-align: left !important;">
 			<h6>
-				<?php //echo $result['id']; ?>.
+				<?php echo $result['class']; ?>.
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="text-info">
 				<?php echo $result['title']; ?>
 				</span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<br>
+				<br>
 				<?php if(!empty($result['url'])){ ?>
 				<a href="<?php echo $result['url']; ?>" class="btn btn-lg btn-outline-success btnCustom">
 					<i class="fas fa-eye"></i>
 				</a>
+				<br>
+				<br>
 			<?php } ?>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<div class="d-md-inline-block d-sm-block d-block">
 				Submitted at <?php echo date($result['created_at']); ?>
+			</div>
 			</h6>
 			</div>
 			<div class="text-success">
@@ -332,14 +340,22 @@ if($previllages == "admin"){
 				</span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<br>
+				<br>
 				<?php if(!empty($result['url'])){ ?>
 				<a href="<?php echo $result['url']; ?>" class="btn btn-lg btn-outline-success btnCustom">
 					<i class="fas fa-eye"></i>
 				</a>
+				<br>
+				<br>
 			<?php } ?>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
 				<span class="width-20 d-inline-block d-sm-inline-block d-md-inline-block"></span>
+				<br>
+				<div class="d-md-inline-block d-sm-block d-block">
 				Submitted at <?php echo date($result['created_at']); ?>
+			</div>
 			</h6>
 			</div>
 			<div class="text-success">

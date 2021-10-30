@@ -93,7 +93,7 @@ if($previllages == "admin"){
 				&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 
 
-				<a href="#" onclick="$('#dropdown3').toggleClass('d-none d-md-block d-sm-none d-lg-block');" class="btn btn-outline-success btnCustom d-inline-block d-sm-inline-block d-md-none d-lg-none">
+				<a href="#" onclick="$('#dropdown3').toggleClass('d-none d-md-block d-sm-none d-lg-block');" class="btn btn-outline-success btnCustom d-inline-block d-sm-inline-block d-md-none d-lg-none" style="position: absolute;top: 100px;left: 10px;">
 					<i class="fas fa-list"></i>
 				</a>
 
