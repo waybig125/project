@@ -36,7 +36,7 @@ include'remove_class.php';
  ?>
 <?php 
 
-$previllages = $_COOKIE['previllages'] ?? "";
+$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 $error = "";
 
 if($previllages == "admin"){

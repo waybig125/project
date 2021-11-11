@@ -18,7 +18,7 @@
 
 				$user_name = $_COOKIE['user_name'] ?? "";
 
-				$previllages = $_COOKIE['previllages'] ?? "";
+				$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 				$password = htmlspecialchars($_POST['old']);
 

@@ -1,7 +1,7 @@
 <?php include 'templates/sql/db.php'; ?>
 <?php
 	
-	$previllages = $_COOKIE['previllages'] ?? "";
+	$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 	if($previllages == "admin"){
 
@@ -47,7 +47,7 @@
 
  		if($conn){
 
- 		$message = htmlspecialchars($_POST['message']);
+ 		$message = base64_encode(htmlspecialchars($_POST['message']));
  		$message = mysqli_real_escape_string($conn, $message);
  		$roll_no = $_COOKIE['student'] ?? "";
  		$sql = "SELECT * FROM students WHERE roll_no = '$roll_no'";

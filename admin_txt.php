@@ -2,7 +2,7 @@
 <?php if(isset($_GET['student'])){ ?>
 <?php
 	
-	$previllages = $_COOKIE['previllages'] ?? "";
+	$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 	if($previllages == "admin"){
 
@@ -49,7 +49,7 @@
  		if($conn){
 
  		$message = htmlspecialchars($_POST['message']);
- 		$message = mysqli_real_escape_string($conn, $message);
+ 		$message = base64_encode(mysqli_real_escape_string($conn, $message));
  		$roll_no = $_COOKIE['student'] ?? "";
  		$sql = "SELECT * FROM students WHERE roll_no = '$roll_no'";
  		$query = mysqli_query($conn, $sql);
@@ -188,6 +188,17 @@ echo '<div class="alert text-danger aniview reallyslow" data-av-animation="fadeI
 <head>
 	<meta charset="utf-8">
 	<title>Chat</title>
+	<style type="text/css">
+		nav{
+			z-index: 5 !important;
+		}
+		#height li:hover{
+			background: whitesmoke !important;
+		}
+		#height{
+			min-height: 500px;
+		}
+	</style>
 	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
 	<!-- <link rel="stylesheet" type="text/css" href="templates/css/style2.css"> -->
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
@@ -235,8 +246,9 @@ echo '<div class="alert text-danger aniview reallyslow" data-av-animation="fadeI
 	<br>
 	<br>
 
+	<div class="bg-white" id="height">
 	<?php foreach ($students as $student) { ?>
-			<li class="list-group-item text-white list-group-flush list-group-item-action">
+			<li class="list-group-item text-dark bg-white list-group-flush list-group-item-action">
 		<div class="student card-body" id="<?php echo $student['id']; ?>">
 			<div class="row">
 				<div class="col-md-6 col-sm-10 col-10">
@@ -266,14 +278,14 @@ echo '<div class="alert text-danger aniview reallyslow" data-av-animation="fadeI
 
 				<?php if($student['unread_msg'] != 0){ ?>
 
-				<span class="badge badge-success text-white" style="border-radius: 50%;background: #00b74a;margin-right: 20px;">
+				<span class="badge badge-success text-white" style="border-radius: 50%;background: #00b74a;margin-right: 20px;margin-bottom: 5px;">
 					<?php echo $student['unread_msg']; ?>
 				</span>
 
 			<?php } ?>
 
-				<a href="?student=<?php echo $student['roll_no']; ?>">
-					<i class="fas fa-comments"></i>
+				<a href="?student=<?php echo $student['roll_no']; ?>" class="btn-link  btn" style="margin: 0 !important;padding: 4px	 !important;padding-right: 15px !important;padding-left: 15px !important;">
+					<i class="fas fa-comments fa-2x"></i>
 				</a>
 						 
            <!-- Dropdown end -->
@@ -285,6 +297,7 @@ echo '<div class="alert text-danger aniview reallyslow" data-av-animation="fadeI
 		</div>
 		</li>
 	<?php } ?>
+	</div>
 
 	<script type="text/javascript" src="templates/js/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

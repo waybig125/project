@@ -1,6 +1,6 @@
 <?php 
 
-$previllages = $_COOKIE['previllages'] ?? "";
+$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 if($previllages == "admin"){
 
@@ -188,7 +188,7 @@ if($previllages == "admin"){
 
 	<div class="height-20"></div>
 	<div class="height-20"></div>
-	<div class="height-20"></div>
+	<div class="extra"></div>
 	<br>
 	<br>
 
@@ -315,7 +315,7 @@ if($previllages == "admin"){
 </body>
 </html>
 
-	<?php include 'templates/footer.php'; ?>
+	<?php //include 'templates/footer.php'; ?>
 
 <?php }else{
 	header('Location: index.php');

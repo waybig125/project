@@ -22,7 +22,7 @@ $imageUrl = "dps/".$id.$uploaded_file;
 
     if($conn){
 
-            $previllages = $_COOKIE['previllages'] ?? "";
+            $previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
             if($previllages == "student"){
 

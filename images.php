@@ -1,10 +1,25 @@
+<?php 
+
+$previllages = base64_decode($_COOKIE['previllages']);
+
+if($previllages == "admin"){
+
+	if(isset($_GET['remove_img'])){
+
+		$path = "imgs/".$_GET['remove_img'];
+
+		unlink($path);
+
+	}
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php include 'templates/meta.php'; ?>
 	<?php include 'templates/sql/db.php'; ?>
 	<?php include 'templates/preloader.php'; ?>
-	<title>404 Error</title>
+	<title>Images Management</title>
 	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
@@ -33,140 +48,63 @@
 	<br>
 
 	<h4 id="typing" class="text-center d-md-block d-lg-block d-sm-none d-none text-success font-80px aniview-2 reallyslow" data-av-animation="">
-		<span class="border-bottom-success">404 Error</span>&nbsp;
+		<span class="border-bottom-success">Images Management</span>&nbsp;
 	</h4>
 	<h4 id="typing2" class="text-center d-block d-sm-block d-md-none d-lg-none text-success font-50px aniview-2 reallyslow" data-av-animation="">
-		<span class="border-bottom-success">404 Error</span>&nbsp;
+		<span class="border-bottom-success">Images Management</span>&nbsp;
 	</h4>
+
+	<div class="extra"></div>
 	<br>
 	<br>
-	<h2 class="text-white text-center">
-		Page not found
-	</h2>
+	</div>
+
+	<div class="extra"></div>
+
+	<?php
+
+	 $images = scandir("imgs");
+
+	 ?>
+
+	<section id="students" class="card">
+		<ul class="list-group">
+		<?php foreach ($images as $image) { ?>
+			<?php 
+
+			if(filetype($image) != "dir"){ 
+			
+				?>
+			
+			<li class="list-group-item text-white list-group-flush list-group-item-action">
+			
+			<img src="imgs/<?php echo $image; ?>" width="100px" height="100px" class="img-rounded">
+
+			<div width="200px" style="display: inline-block; margin-right: 100px;"></div>
+
+			<a href="<?php echo $_SERVER['PHP_SELF']; ?>?remove_img=<?php echo $image; ?>" class="col-4 col-sm-4">
+					<i class="fas fa-trash text-danger inline-block mr-20"></i>
+				</a>
+
+		</li>
+
+		<?php } ?>
+
+	<?php } ?>
+	</ul>
+	</section>
+
+	<div class="extra"></div>
 	<div class="text-center">
-	<a class="btn btn-outline-success text-white btnCustom btn-lg" href="index.php">GO HOME</a>
-	</div>
+	<a href="new_img.php" class="btn btn-outline-success btnCustom">
 
-	<div class="extra"></div>
-	<br>
-	<br>
-	</div>
-
-	<!-- <button data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-right" >click me!</button>
- -->
+		<i class="fas fa-plus"></i>
 	
+	New Image
 
-	<div class="extra"></div>
-
-	<div class="jumbotron jumbotron-dark" id="main_jumbotron">
-		<h4 class="text-success family-monospace text-center aniview fast" data-av-animation="pulse">Our Sevices</h4>
-		<ul class="rslides slow" data-av-animation="fadeInUp">
-			<?php 
-
-			$sql = "SELECT * FROM services";
-
-			$query = mysqli_query($conn, $sql);
-
-			$fetches = mysqli_fetch_all($query, MYSQLI_ASSOC);
-
-			foreach($fetches as $fetch){
-
-			 ?>
-			<li class="style-none" style="overflow: hidden;">
-		<h1 class="text-gray">
-			<?php echo $fetch['title']; ?>
-		</h1>
-
-		<div class="col-md-6 col-sm-8 col-8 col-lg-6">
-			<?php 
-			if($fetch['img'] != ""){
-			 ?>
-		<img src="<?php echo $fetch['img']; ?>" class="img-rounded" style="width: 200px;height: 100px;">
-
-		<?php
-			}
-		?>
-
+	</a>
 	</div>
 	<div class="extra"></div>
-
-		<p class="col-md-12 col-sm-12 col-12 col-lg-12 text_to_display" title="<?php echo htmlspecialchars($fetch['text_to_display']); ?>">
-			<?php 
-			if(strlen($fetch['text_to_display']) > 600){
-
-	$text = substr($fetch['text_to_display'], 0, 600). " ...";
-
-			}else{
-				$text = $fetch['text_to_display'];
-			}
-
-			 ?>
-			<?php echo htmlspecialchars($text); ?>
-		</p>
-	</li>
-	<?php } ?>
-		
-	</ul>
-	</div>
-
-	<div class="extra"></div>
-	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
-	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
-
-	<div class="jumbotron jumbotron-dark" id="third_jumbotron">
-		<h4 class="text-success family-monospace text-center aniview fast" data-av-animation="pulse">Events</h4>
-		<ul class="rslides aniview slow" data-av-animation="fadeInUp">
-			<?php 
-
-			$sql = "SELECT * FROM events";
-
-			$query = mysqli_query($conn, $sql);
-
-			$fetches = mysqli_fetch_all($query, MYSQLI_ASSOC);
-
-			foreach($fetches as $fetch){
-
-			 ?>
-			<li class="style-none" style="overflow: hidden;">
-		<h1 class="text-gray">
-			<?php echo $fetch['title']; ?>
-		</h1>
-
-		<div class="col-md-6 col-sm-8 col-8 col-lg-6">
-			<?php 
-			if($fetch['img'] != ""){
-			 ?>
-		<img src="<?php echo $fetch['img']; ?>" class="img-rounded" style="width: 200px;height: 100px;">
-		<?php 
-	}
-		 ?>
-	</div>
-	
-	<div class="extra"></div>
-
-		<p class="col-md-12 col-sm-12 col-12 col-lg-12 text_to_display" title="<?php echo htmlspecialchars($fetch['text_to_display']); ?>">
-			<?php 
-			if(strlen($fetch['text_to_display']) > 600){
-
-	$text = substr($fetch['text_to_display'], 0, 600). " ...";
-
-			}else{
-				$text = $fetch['text_to_display'];
-			}
-
-			 ?>
-			<?php echo htmlspecialchars($text); ?>
-		</p>
-	</li>
-	<?php } ?>
-	</ul>
-	</div>
-
-	<div class="extra"></div>
-	<div class="extra"></div>
-	
-	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
-	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
 
 	<?php 
 
@@ -227,3 +165,10 @@
 
 </body>
 </html>
+
+<?php }else if($previllages == "student"){
+	header('Location: login.php');
+} ?>
+
+
+

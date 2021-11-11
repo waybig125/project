@@ -13,7 +13,7 @@ Java Script must be enabled
           if($conn ?? false && isset($_COOKIE['logged_in'])){
             // echo "logged_in ";
             $user_name = $_COOKIE['user_name'] ?? "";
-            $previllages = $_COOKIE['previllages'] ?? "";
+            $previllages = base64_decode($_COOKIE['previllages']) ?? "";
             if($previllages == "student"){
             $sql = "SELECT dpUrl FROM students WHERE roll_no = '$user_name'";
             }else if($previllages == "admin"){
@@ -87,12 +87,30 @@ Java Script must be enabled
         Notice</a>
         <a class="dropdown-item" href="new_fee_voucher.php"><i class="fas fa-plus"></i> 
         Fee Voucher</a>
+         <a class="dropdown-item" href="new_img.php"><i class="fas fa-plus"></i> 
+        Image</a>
+         <a class="dropdown-item" href="new_service.php"><i class="fas fa-plus"></i> 
+        Service</a>
+         <a class="dropdown-item" href="new_event.php"><i class="fas fa-plus"></i> 
+        Event</a>
         <a class="dropdown-item" href="notices.php">
           Notices
           <i class="fas fa-eye"></i>
         </a>
         <a class="dropdown-item" href="results.php">
           Result Cards
+          <i class="fas fa-eye"></i>
+        </a>
+        <a class="dropdown-item" href="images.php">
+          Images
+          <i class="fas fa-eye"></i>
+        </a>
+        <a class="dropdown-item" href="services.php">
+          Services
+          <i class="fas fa-eye"></i>
+        </a>
+        <a class="dropdown-item" href="events.php">
+          Events
           <i class="fas fa-eye"></i>
         </a>
          <a class="dropdown-item" href="fee_vouchers.php">

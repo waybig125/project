@@ -1,6 +1,6 @@
 <?php 
 
-$previllages = $_COOKIE['previllages'] ?? "";
+$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 if($previllages == "admin"){
 	include 'admin_txt.php';
@@ -25,3 +25,6 @@ if($previllages == "admin"){
  		margin-top: 100px !important;
  	}
  </style>
+ <script type="text/javascript">
+     $('.dropdown').hide();
+ </script>

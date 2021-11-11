@@ -1,6 +1,6 @@
 <?php 
 
-$previllages = $_COOKIE['previllages'] ?? "";
+$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 if($previllages == "admin"){
 
@@ -119,7 +119,14 @@ if($previllages == "admin"){
 
 </head>
 <body>
-	<div style="background: url(templates/img/img6.jpg);background-attachment: fixed;background-position: center;background-size: cover;background-repeat: no-repeat;">
+	<?php 
+
+	$backgrounds = ['img50.jpg', 'img11.jpg', 'img7.jpg', 'img8.jpg'];
+
+	$random = mt_rand(0, 3);
+
+	 ?>
+	<div style="background: url(templates/img/<?php echo $backgrounds[$random]; ?>);background-attachment: fixed;background-position: center;background-size: cover;background-repeat: no-repeat;">
 
 	<?php include 'templates/header.php'; ?>
 
@@ -147,11 +154,11 @@ if($previllages == "admin"){
 
 	<div class="height-20"></div>
 	<div class="height-20"></div>
-	<div class="height-20"></div>
+	<div class="extra"></div>
 	<br>
 	<br>
 
-	<h5 id="typing" class="text-center text-info font-50px aniview-2 slow" data-av-animation="pulse">
+	<h5 id="typing" class="text-center text-success font-50px aniview-2 slow" data-av-animation="pulse">
 		<span class="border-bottom-info">New Notice</span>&nbsp;
 	</h5>
 
@@ -296,7 +303,7 @@ if($previllages == "admin"){
 </body>
 </html>
 
-	<?php include 'templates/footer.php'; ?>
+	<?php //include 'templates/footer.php'; ?>
 
 <?php }else{
 	header('Location: index.php');

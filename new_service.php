@@ -4,94 +4,17 @@ $previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 if($previllages == "admin"){
 
+	$title = "";
+
  ?>
 <?php include 'templates/sql/db.php'; ?>
-<?php 
-			
-			$class_input = "";
-			$section_input = "";
-			$gender = "";
+<?php
 
-			if(isset($_POST['class'])){
-
-				$class_input = htmlspecialchars($_POST['class']);
-				$error = "";
-				$section_input = htmlspecialchars($_POST['section']);
-				$gender = htmlspecialchars($_POST['gender']);
-				$boys = 0;
-				$girls = 0;
-				$both_ = 0;
-				$created_by = $_COOKIE['user_name'] ?? "";
-
-				if($gender == "boys"){
-					$boys = true;
-				}else if($gender == "girls"){
-					$girls = true;
-				}else{
-					$both_ = true;
-				}
-
-			if(!$conn){
-
-			//connection is false
-
-			$error.="Error: ".mysqli_error($conn)."<br>";
-
-			}//connection is false
-
-			else{
-
-				//connection is true
-				
-				$sql = "SELECT * FROM classes WHERE class = '".$class_input."' AND section = '".$section_input."'";
-
-				// echo $sql;
-
-				$query = mysqli_query($conn, $sql);
-
-				$rows = mysqli_num_rows($query);
-
-				$results = mysqli_fetch_assoc($query);
-
-				if($rows == 1){
-
-					$error.= "<br>CLASS ALREADY EXISTS";
-
-				}else{
-					
-				$sql = "INSERT INTO classes(class,section,boys,girls,both_genders,created_by) VALUES('$class_input','$section_input',$boys,$girls,$both_,'$created_by')";
-
-				// echo $sql;
-					$query = mysqli_query($conn, $sql);
-
-					if($query){
-						header('Location: admin.php');
-					}else{
-						$error.="Error: ".mysqli_error($conn);
-					}
-
-				}
-
-
-			}//connection is true
-
-			}//end isset
-
-		// include 'templates/sql/login.php';
-
-			// echo '<p class="mt-5 mb-3 text-center text-danger">'.$error.'</p>';
 			echo '<div class="alert text-danger aniview reallyslow" data-av-animation="fadeInDownBig" style="font-size: 20px;" id="alert">
 			<br>
 			'.$error.'
 		</div>
 		';
-
-		// echo '<script>
-		// $(window)on("load", function(){
-		// 	$("#alert").delay(5000).fadeOut();
-		// 	});
-		// </script>
-		// ';
 		
  ?>
 
@@ -102,7 +25,7 @@ if($previllages == "admin"){
 	<?php include 'templates/preloader.php';
 					$error = "";
 					 ?>
-	<title>New Class</title>
+	<title>New Service</title>
 	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
@@ -110,17 +33,12 @@ if($previllages == "admin"){
 	<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css ">
 	<!--  -->
-	<!-- <link rel="stylesheet" href="templates/password/css/example.wink.css"> -->
-	<link rel="stylesheet" href="templates/password/css/demo.css">
-	<!--  -->
-
-	<!-- https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css -->
 
 </head>
 <body>
 	<?php 
 
-	$backgrounds = ['img50.jpg', 'img11.jpg', 'img7.jpg', 'img8.jpg'];
+	$backgrounds = ['img50.jpg', 'img11.jpg', 'img6.jpg', 'img8.jpg'];
 
 	$random = mt_rand(0, 3);
 
@@ -158,43 +76,37 @@ if($previllages == "admin"){
 	<br>
 
 	<h5 id="typing" class="text-center text-info font-50px aniview-2 slow" data-av-animation="pulse">
-		<span class="border-bottom-info">Register New Class</span>&nbsp;
+		<span class="border-bottom-info">New Service</span>&nbsp;
 	</h5>
 
 	<!-- <div class="extra"></div> -->
 	<br>
 	<br>
 	</div>
-    <form class="form-signin" id="form-custom2" action="#" method="POST">
+
+    <form class="form-signin" id="form-custom2" action="#" method="POST" enctype="multipart/form-data">
+
   <img class="mb-4" src="templates/img/logo.png" alt="logo" width="100px" height="260px">
   <!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
-  <label for="class" class="sr-only">Class</label>
-  <input type="text" id="class" value="<?php echo $class_input; ?>" class="form-control" placeholder="Class" autocomplete="off" id="img-brand" name="class" required autofocus>
-  <br>
-  <label for="section" class="sr-only login-field">Section</label>
-  <input type="text" id="section" value="<?php echo $section_input; ?>" class="form-control" placeholder="Section" autocomplete="off" name="section" required>
-  
-  <br>
-
-  <div style="">
-   <br>
-   <br>
-      <select class="text-center text-white btn btn-outline-success btnCustom" name="gender" id="gender" style="font-size: 20px;">
-      	
-        <option value="boys">BOYS</option>
-        <option value="girls">GIRLS</option>
-        <option value="both">BOYS & GIRLS</option>
-
-      </select>
-      </div>
-      <br>
+  <label for="roll" class="sr-only">Title</label>
+  <input type="text" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="Title" autocomplete="off" name="title" required autofocus>
 
   <br>
 
-  <button class="btn btn-lg btn-outline-success btnCustom btn-block" type="submit" name="submit">REGISTER</button>
+  <textarea id="text" name="text" placeholder="Text" class="form-control"></textarea>
+
+  <br>
+
+  <input type="file" name="file" id="file" onchange="loadImage(event);">
+
+  <br>
+  <br>
+
+  <button class="btn btn-lg btn-outline-success btnCustom btn-block" type="button" name="submit" onclick="loadData(this);">SUBMIT</button>
   <p class="mt-5 mb-3 text-danger"><?php echo $error; ?></p>
   <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
 </form>
+
 </div>
 
 </div>
@@ -203,12 +115,12 @@ if($previllages == "admin"){
 	
 	<div class="extra"></div>
 
+
 	<div class="jumbotron jumbotron-dark" id="sec_jumbotron">
-		<!-- <div class="extra d-md-none d-sm-block d-block"></div>
-		<h1 class="text-gray text-center">
-	<a href="#" class="btn btn-outline-success btnCustom btn-lg aniview slow" data-av-animation="fadeInDownBig">Login</a>
-	</h1> -->
+		
 	</div>
+
+	<div id="php"></div>
 
 	<script type="text/javascript" src="templates/js/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -221,6 +133,58 @@ if($previllages == "admin"){
 	<script type="text/javascript" src="templates/package/dist/index.umd.js"></script>
 	<!--  -->
 	<script src="templates/password/hideShowPassword.js"></script>
+	<script type="text/javascript">
+
+		var imgFile = "";
+
+		function loadImage(event){
+
+				var image = event.target.files[0];
+
+			if(image.type.match("image.*")){
+
+			var reader = new FileReader();
+
+			reader.addEventListener("load", function(){
+				imgFile = reader.result;
+			}, false);
+
+			if(image){
+				reader.readAsDataURL(image);
+			}
+
+			}
+
+		}
+		function loadData(button){
+
+			let data = new Promise((resolve, reject) => {
+
+				$('#php').load('add_service.php', {
+     		img: imgFile,
+     		text: $('#text').val(),
+     		title: $('#title').val()
+     	});
+
+				$('.preloader-container').fadeIn();
+
+				resolve('done')
+
+			});
+
+			data.then((msg) => {
+
+				console.log(msg)
+
+				button.disabled = "disabled"
+
+				button.classList.add('disabled');
+
+				// window.location.href = "index.php";
+			});
+		
+	}
+	</script>
 	<!--  -->
 	<style>
 	#main_jumbotron{
@@ -239,6 +203,9 @@ if($previllages == "admin"){
 ::placeholder {
   color: white !important;
   opacity: 1;
+}
+textarea{
+	resize: none;
 }
 
 	</style>

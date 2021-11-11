@@ -1,6 +1,6 @@
 <?php 
 
-$previllages = $_COOKIE['previllages'] ?? "";
+$previllages = base64_decode($_COOKIE['previllages']) ?? "";
 
 if($previllages == "student"){
 	$connection = $conn ?? false;

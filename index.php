@@ -26,7 +26,15 @@
 
 	<?php include 'templates/header.php'; ?>
 
-	<div id="container" style="background: url(templates/img/img50.jpg);background-attachment: fixed;background-position: center;background-size: cover;background-repeat: no-repeat;">
+	<?php 
+
+	$backgrounds = ['img50.jpg', 'img6.jpg', 'img7.jpg', 'img8.jpg'];
+
+	$random = mt_rand(0, 3);
+
+	 ?>
+
+	<div id="container" style="background: url(templates/img/<?php echo $backgrounds[$random]; ?>);background-attachment: fixed;background-position: center;background-size: cover;background-repeat: no-repeat;">
 
 	<div class="extra"></div>
 	<br>
@@ -49,19 +57,26 @@
 	<div class="rslides_container row">
 		<div class="col-md-2 col-1 col-sm1"></div>
 		<div class="col-md-8 col-10 col-sm-10">
+			<?php
+
+	 $images = scandir("imgs");
+
+	 ?>
 	<ul class="slides" id="slider1">
-		<li>
-			<img src="templates/img/img1.jpg" alt="img1" class="img-rounded">
-		</li>
-		<li>
-			<img src="templates/img/img2.jpg" alt="img2" class="img-rounded">
-		</li>
-		<li>
-			<img src="templates/img/img3.jpg" alt="img2" class="img-rounded">
-		</li>
-		<li>
-			<img src="templates/img/img4.jpg" alt="img2" class="img-rounded">
-		</li>
+			<?php foreach ($images as $image) { ?>
+			<?php 
+
+			if(filetype($image) != "dir"){ 
+			
+				?>
+				<li>
+			<img src="imgs/<?php echo $image ?>" alt="<?php echo $image ?>" class="img-rounded">
+			</li>
+		<?php }
+		
+		}
+
+		 ?>
 	</ul>
 	</div>
 	<div class="col-md-2 col-1 col-sm-1"></div>
@@ -74,56 +89,112 @@
 	<div class="jumbotron jumbotron-dark" id="main_jumbotron">
 		<h4 class="text-success family-monospace text-center aniview fast" data-av-animation="pulse">Our Sevices</h4>
 		<ul class="rslides slow" data-av-animation="fadeInUp">
-			<li class="style-none">
-		<h1 class="text-gray">
-			Service 1<!-- lightSpeedInLeft -->
-		</h1>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		</p>
-	</li>
-		<li class="style-none">
-		<h1 class="text-gray">
-			Service 2
-		</h1>
-		<p>
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
-	</li>
-	</ul>
-	</div>
+			<?php 
 
-	<div class="jumbotron jumbotron-dark" id="third_jumbotron">
-		<h4 class="text-success family-monospace text-center aniview fast" data-av-animation="pulse">Events</h4>
-		<ul class="rslides aniview slow" data-av-animation="fadeInUp">
-			<li class="style-none">
+			$sql = "SELECT * FROM services";
+
+			$query = mysqli_query($conn, $sql);
+
+			$fetches = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+			foreach($fetches as $fetch){
+
+			 ?>
+			<li class="style-none" style="overflow: hidden;">
 		<h1 class="text-gray">
-			Event 1
+			<?php echo $fetch['title']; ?>
 		</h1>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+
+		<div class="col-md-6 col-sm-8 col-8 col-lg-6">
+			<?php 
+			if($fetch['img'] != ""){
+			 ?>
+		<img src="<?php echo $fetch['img']; ?>" class="img-rounded" style="width: 200px;height: 100px;">
+
+		<?php
+			}
+		?>
+
+	</div>
+	<div class="extra"></div>
+
+		<p class="col-md-12 col-sm-12 col-12 col-lg-12 text_to_display" title="<?php echo htmlspecialchars($fetch['text_to_display']); ?>">
+			<?php 
+			if(strlen($fetch['text_to_display']) > 600){
+
+	$text = substr($fetch['text_to_display'], 0, 600). " ...";
+
+			}else{
+				$text = $fetch['text_to_display'];
+			}
+
+			 ?>
+			<?php echo htmlspecialchars($text); ?>
 		</p>
 	</li>
-		<li class="style-none">
-		<h1 class="text-gray">
-			Event 2
-		</h1>
-		<p>
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
-	</li>
+	<?php } ?>
+		
 	</ul>
 	</div>
 
 	<div class="extra"></div>
+	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
+	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
+
+	<div class="jumbotron jumbotron-dark" id="third_jumbotron">
+		<h4 class="text-success family-monospace text-center aniview fast" data-av-animation="pulse">Events</h4>
+		<ul class="rslides aniview slow" data-av-animation="fadeInUp">
+			<?php 
+
+			$sql = "SELECT * FROM events";
+
+			$query = mysqli_query($conn, $sql);
+
+			$fetches = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+			foreach($fetches as $fetch){
+
+			 ?>
+			<li class="style-none" style="overflow: hidden;">
+		<h1 class="text-gray">
+			<?php echo $fetch['title']; ?>
+		</h1>
+
+		<div class="col-md-6 col-sm-8 col-8 col-lg-6">
+			<?php 
+			if($fetch['img'] != ""){
+			 ?>
+		<img src="<?php echo $fetch['img']; ?>" class="img-rounded" style="width: 200px;height: 100px;">
+		<?php 
+	}
+		 ?>
+	</div>
+	
+	<div class="extra"></div>
+
+		<p class="col-md-12 col-sm-12 col-12 col-lg-12 text_to_display" title="<?php echo htmlspecialchars($fetch['text_to_display']); ?>">
+			<?php 
+			if(strlen($fetch['text_to_display']) > 600){
+
+	$text = substr($fetch['text_to_display'], 0, 600). " ...";
+
+			}else{
+				$text = $fetch['text_to_display'];
+			}
+
+			 ?>
+			<?php echo htmlspecialchars($text); ?>
+		</p>
+	</li>
+	<?php } ?>
+	</ul>
+	</div>
+
+	<div class="extra"></div>
+	<div class="extra"></div>
+	
+	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
+	<div class="extra d-md-none d-lg-none d-sm-block d-block"></div>
 
 	<?php 
 
@@ -180,6 +251,7 @@
     cursorSpeed: 800,
 
   }).go();
+
 	</script>
 
 </body>

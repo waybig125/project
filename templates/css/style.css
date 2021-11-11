@@ -80,9 +80,10 @@ border: 0;
   display: inline-block;
   margin-top: 50px;
   transition: 1s;
+  color: gray !important;
 }
 #footer footer div a:hover{
-  color: gray !important;
+  color: white !important;
 }
 nav.navbar.bg-dark{
   background: #000000 !important;
@@ -200,7 +201,7 @@ span.circle{
   left: 0;
   width: 100%;
   height: 100%;
-  background: black;
+  background: white;
   z-index: 999;
   /*z-index: -999;*/
 }
@@ -213,10 +214,10 @@ span.circle{
  }
 @keyframes color_change{
   0%{
-    color: white;
+    color: gray;
   }
   20%{
-    color: yellow;
+    color: slategray;
   }
   40%{
     color: olive;
@@ -323,7 +324,7 @@ a.dropdown-item:hover{
   padding: 0 0 0 0 !important;
   /*border: 1px solid #00b74a !important;*/
   border: 0 !important;
-  background: linear-gradient(360deg, transparent, black) !important;
+  background: linear-gradient(360deg, black, transparent) !important;
   /*font-family: 'comic sans ms' !important;*/
 }
 #form-custom2 input{

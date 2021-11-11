@@ -16,7 +16,15 @@
 
 	<?php include 'templates/header.php'; ?>
 
-	<div class="cover" style="background: url(templates/img/img6.jpg);background-attachment: fixed;background-size: cover;background-repeat: no-repeat;height: 1800px">
+	<?php 
+
+	$backgrounds = ['img50.jpg', 'img6.jpg', 'img9.jpg', 'img8.jpg'];
+
+	$random = mt_rand(0, 3);
+
+	 ?>
+
+	<div class="cover" style="background: url(templates/img/<?php echo $backgrounds[$random]; ?>);background-attachment: fixed;background-size: cover;background-repeat: no-repeat;background-position: center;height: 1800px">
 
 	<div class="extra"></div>
 
@@ -112,7 +120,6 @@
 	</div>
 
 	<?php } ?>
-
 
 	<?php include 'templates/footer.php'; ?>
 

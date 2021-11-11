@@ -52,7 +52,7 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
     <div class="col-md-8 col-sm-10 col-10 col-lg-8">
     <div class="sent text-dark">
 
-        <?php echo $received_message['content']; ?>
+        <?php echo base64_decode($received_message['content']); ?>
     <div class="text-muted" style="font-size: 10px;width: 100% !important;text-align: right;">
         <br>
         <?php echo date($received_message['sent_at']); 
@@ -75,7 +75,7 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
     <div class="col-md-8 col-sm-10 col-10 col-lg-8">
     <div class="received text-dark">
 
-        <?php echo $received_message['content']; ?>
+        <?php echo base64_decode($received_message['content']); ?>
         <div class="text-muted" style="font-size: 10px;width: 100% !important;text-align: right;">
             <br><?php echo date($received_message['sent_at']); 
             if($received_message['read_msg']){
@@ -105,7 +105,12 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
 
 
  <style type="text/css">
-     html,body{
+     body,html{
         background: url(templates/img/whatsapp.png) !important;
+        background-attachment: fixed !important;
+        /*background-repeat: no-repeat !important;*/
+        /*background-position: center !important;*/
+        /*background-size: cover !important;*/
+        /*margin: 50px;*/
      }
  </style>

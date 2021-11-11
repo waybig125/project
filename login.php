@@ -37,7 +37,7 @@
 
          	setcookie("user_name", $user_name, time() + (864000) * 7);
 
-         	setcookie("previllages", 'admin', time() + (864000) * 7);
+         	setcookie("previllages", base64_encode('admin'), time() + (864000) * 7);
 
          	header('Location: index.php');
 				}
@@ -56,7 +56,7 @@
 
          	setcookie("user_name", $user_name, time() + (864000) * 7);
 
-         	setcookie("previllages", $results['previllages'], time() + (864000) * 7);
+         	setcookie("previllages", base64_encode($results['previllages']), time() + (864000) * 7);
 
          	header('Location: index.php');
 
@@ -109,7 +109,14 @@
 
 </head>
 <body>
-	<div style="background: url(templates/img/img11.jpg);background-attachment: fixed;background-position: center;background-size: cover;background-repeat: no-repeat;">
+	<?php 
+
+	$backgrounds = ['img50.jpg', 'img11.jpg', 'img7.jpg', 'img8.jpg'];
+
+	$random = mt_rand(0, 3);
+
+	 ?>
+	<div style="background: url(templates/img/<?php echo $backgrounds[$random]; ?>);background-attachment: fixed;background-position: center;background-size: cover;background-repeat: no-repeat;">
 
 	<?php include 'templates/header.php'; ?>
 
@@ -137,7 +144,7 @@
 
 	<div class="height-20"></div>
 	<div class="height-20"></div>
-	<div class="height-20"></div>
+	<div class="extra"></div>
 	<br>
 	<br>
 
@@ -160,7 +167,7 @@
   <div class="checkbox mb-3">
     <label title="By checking the box you agree to the agreement">
       <input type="checkbox" value="accept" required> I accept the
-      <a href="#">aggrement</a>
+      <a href="agreement.php" target="_blank">agreement</a>
     </label>
   </div>
   <button class="btn btn-lg btn-outline-success btnCustom btn-block" type="submit" name="submit">Login</button>
@@ -225,7 +232,7 @@
 	$('.my-toggle').addClass('btn btn-outline-success btnCustom');
 </script>
 		
-		<?php include 'templates/footer.php'; ?>
+		<?php //include 'templates/footer.php'; ?>
 
 </body>
 </html>
