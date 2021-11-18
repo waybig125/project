@@ -14,7 +14,7 @@
 	<link href="templates/css/signin.css" rel="stylesheet">
 
 </head>
-<body style="background: white">
+<body>
 
 	<?php include 'templates/header.php'; ?>
 
@@ -52,7 +52,7 @@
 
 	<div class="text-center">
 
-	<a href="https://docs.google.com/forms/d/e/1FAIpQLSdICEGSYZ9uEq4tKfnTj6CXmNRGgXbT54Dh8euSSm78DNkNnQ/viewform?usp=sf_link" class="btn btn-primary btn-lg">Apply for Job</a>
+	<a href="https://docs.google.com/forms/d/e/1FAIpQLSdICEGSYZ9uEq4tKfnTj6CXmNRGgXbT54Dh8euSSm78DNkNnQ/viewform?usp=sf_link" class="btn btn-outline-success btnCustom btn-lg">Apply for Job</a>
 
 	<div class="extra"></div>
 
@@ -72,14 +72,14 @@
 		
 	?>
 
-	<div class="jumbotron jumbotron-dark" id="sec_jumbotron">
+	<!-- <div class="jumbotron jumbotron-dark" id="sec_jumbotron">
 		<div class="extra d-md-none d-sm-block d-block"></div>
 		<h1 class="text-gray text-center">
 
 	<a href="login.php" class="btn btn-outline-success btnCustom btn-lg aniview slow" data-av-animation="fadeInDownBig">Login</a>
 
 	</h1>
-	</div>
+	</div> -->
 
 	<?php } ?>
 

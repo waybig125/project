@@ -215,7 +215,7 @@ textarea{
 </body>
 </html>
 
-	<?php //include 'templates/footer.php'; ?>
+	<?php include 'templates/footer.php'; ?>
 
 <?php }else{
 	header('Location: index.php');

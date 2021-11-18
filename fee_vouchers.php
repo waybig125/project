@@ -182,7 +182,7 @@ if($previllages == "admin"){
 </body>
 </html>
 
-	<?php //include 'templates/footer.php'; ?>
+	<?php include 'templates/footer.php'; ?>
 
 <?php }else if($previllages == "student"){?>
 
@@ -300,7 +300,7 @@ if($previllages == "admin"){
 
 	<div class="extra"></div>
 
-	<?php //include'templates/footer.php'; ?>
+	<?php include'templates/footer.php'; ?>
 
 
 

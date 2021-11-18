@@ -18,13 +18,13 @@
 
 	<?php 
 
-	$backgrounds = ['img50.jpg', 'img6.jpg', 'img9.jpg', 'img8.jpg'];
+	$backgrounds = ['img50.jpg', 'img6.jpg', 'img12.jpg', 'img8.jpg'];
 
 	$random = mt_rand(0, 3);
 
 	 ?>
 
-	<div class="cover" style="background: url(templates/img/<?php echo $backgrounds[$random]; ?>);background-attachment: fixed;background-size: cover;background-repeat: no-repeat;background-position: center;height: 1800px">
+	<div class="cover" style="background: url(templates/img/<?php echo $backgrounds[$random]; ?>);background-attachment: fixed, scroll;background-size: cover;background-repeat: no-repeat;background-position: center;height: 1800px">
 
 	<div class="extra"></div>
 
@@ -38,12 +38,35 @@
 			<h2 class="text-success family-monospace" id="typing">About Us&nbsp;</h2>
 			<br>
 			<hr>
+			<?php 
+
+			if($random != 2){
+
+			 ?>
+
+	 <div style="color: limegreen;background: linear-gradient(90deg, black, transparent);">
+
+
+<?php } ?>
+
+			 
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	<?php 
+
+	if($random != 2){
+
+	 ?>
+
+	 </div>
+
+<?php } ?>
+
 		</div>
 	</div>
 	
@@ -91,6 +114,12 @@
 	</div>
 
 	<div class="extra"></div>
+
+	<div class="text-center">
+
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.2508962870693!2d72.72542835038796!3d33.7283277806006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfa748cd088a93%3A0x37e0fe8c0da4cbf4!2sNova%20City%20School!5e0!3m2!1sen!2s!4v1636276524003!5m2!1sen!2s" style="border:0;width: 95%;height: 400px;" allowfullscreen="" loading="lazy"></iframe>
+
+	</div>
 
 	</div>
 

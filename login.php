@@ -232,7 +232,7 @@
 	$('.my-toggle').addClass('btn btn-outline-success btnCustom');
 </script>
 		
-		<?php //include 'templates/footer.php'; ?>
+		<?php include 'templates/footer.php'; ?>
 
 </body>
 </html>

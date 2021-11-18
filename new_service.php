@@ -75,7 +75,7 @@ if($previllages == "admin"){
 	<br>
 	<br>
 
-	<h5 id="typing" class="text-center text-info font-50px aniview-2 slow" data-av-animation="pulse">
+	<h5 id="typing" class="text-center text-success font-50px aniview-2 slow" data-av-animation="pulse">
 		<span class="border-bottom-info">New Service</span>&nbsp;
 	</h5>
 
@@ -216,7 +216,7 @@ textarea{
 </body>
 </html>
 
-	<?php //include 'templates/footer.php'; ?>
+	<?php include 'templates/footer.php'; ?>
 
 <?php }else{
 	header('Location: index.php');
