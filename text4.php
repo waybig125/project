@@ -2,6 +2,12 @@
 <?php
 	
 	$previllages = base64_decode($_COOKIE['previllages']) ?? "";
+	
+	ini_set('post_max_size', '40M');
+	ini_set('upload_max_filesize', '40M');
+
+	ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+
 
 	if($previllages == "student"){
 
@@ -22,9 +28,21 @@
 
  		if($conn){
 
+ 		if($_POST['msg_type'] == "text"){
+
  		$message = base64_encode(htmlspecialchars($_POST['message']));
+
+ 		}else{
+ 			$message = $_POST['message'];
+ 		}
+
  		$message = mysqli_real_escape_string($conn, $message);
+ 		$msg_type = $_POST['msg_type'];
  		$roll_no = $_COOKIE['user_name'] ?? "";
+ 		$imgUrl = $_POST['imgUrl'];
+ 		$videoUrl = $_POST['videoUrl'];
+ 		$audioUrl = $_POST['audioUrl'];
+ 		$fileUrl = $_POST['fileUrl'];
  		$sql = "SELECT * FROM students WHERE roll_no = '$roll_no'";
  		$query = mysqli_query($conn, $sql);
  		$fetch = mysqli_fetch_assoc($query);
@@ -39,11 +57,16 @@
 
  		$from_user = $id."_student";
 
- 		$sql = "INSERT INTO messages(from_user,to_user,content) VALUES('$from_user','admin','$message')";
+ 		$sql = "INSERT INTO messages(from_user,to_user,content,msg_type,imgUrl,audioUrl,fileUrl,videoUrl) VALUES('$from_user','admin','$message','$msg_type','$imgUrl','$audioUrl','$fileUrl','$videoUrl')";
  		if(mysqli_query($conn, $sql)){
  			$success = true;
+ 			echo "<script>
+ 			console.log('sent');
+ 			alertMessageSent();
+ 			</script>";
  		}else{
  			$error .= mysqli_error($conn);
+ 			echo "<script>console.log('failed')</script>";
  		}
 
 		$sql = "UPDATE students SET unread_msg = '$unread' WHERE roll_no = '$roll_no'";
@@ -51,6 +74,7 @@
  			$success = true;
  		}else{
  			$error .= mysqli_error($conn);
+ 			echo $error;
  		}
 
 	}else{

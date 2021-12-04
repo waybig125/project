@@ -26,5 +26,5 @@ if($previllages == "admin"){
  	}
  </style>
  <script type="text/javascript">
-     $('.dropdown').hide();
+     // $('.dropdown').hide();
  </script>

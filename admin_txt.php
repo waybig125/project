@@ -21,18 +21,10 @@
 
  		}
  		$from_user = $id."_student";
-	// $sql = "UPDATE students SET unread_msg = '0' WHERE roll_no = '$student'";
- // 		if(mysqli_query($conn, $sql)){
- // 			$success = true;
- // 		}else{
- // 			$error .= mysqli_error($conn);
- // 		}
- // 		$sql = "UPDATE messages SET read_msg = '1' WHERE from_user = '$from_user'";
- // 		if(mysqli_query($conn, $sql)){
- // 			$success = true;
- // 		}else{
- // 			$error .= mysqli_error($conn);
- // 		}
+
+
+ 		////////////////////
+
 
  	}else{
  			$error .= mysqli_error($conn);
@@ -107,7 +99,28 @@
 			<div class="col-md-2"></div>
 			<div class="d-md-none d-sm-block d-block" style="height: 5px;"></div>
 			<div class="height-50 d-none d-sm-none d-md-block"></div>
-<textarea placeholder="Type a message..." class="form-control col-md-6 col-sm-6 col-6 text-dark input-rounded" name="message" id="message" required></textarea>
+
+<textarea placeholder="Message..." class="form-control col-md-6 col-sm-6 col-6 text-dark input-rounded" name="message" id="message" style="background: url(templates/img/whatsapp.png) !important;
+        background-attachment: fixed !important;" required></textarea>
+
+<input type="file" name="image" id="image" style="display: none;" onchange="attachImage(event);">
+
+<a class="col-md-2 col-2 col-sm-2" id="mic" onclick="start_record();">
+	<i class="fas fa-microphone fa-2x" class="btn"></i>
+</a>
+
+<span id="timer" class="text-muted">
+	<span id="minutes"></span>
+	<span id="seconds"></span>
+</span>
+
+<a class="col-md-2 col-2 col-sm-2" id="stop" onclick="stopRecording();">
+	<i class="fas fa-stop fa-2x" class="btn"></i>
+</a>
+
+<a class="col-md-2 col-2 col-sm-2" id="img" onclick="document.getElementById('image').click()">
+	<i class="fas fa-paperclip text-muted fa-2x" class="btn" title="Attach Image"></i>
+</a>
 
 <button type="button" class="col-md-2 col-2 col-sm-2" id="send" name="send">
 	<img src="templates/img/send.jpeg" class="icon">
@@ -128,33 +141,7 @@
 	<script type="text/javascript" src="templates/js/script3.js"></script>
 	<script type="text/javascript" src="templates/mdb/js/mdb.min.js"></script>
 	<script type="text/javascript" src="templates/package/dist/index.umd.js"></script>
-	<script type="text/javascript">
-     function reload() {
-         document.getElementById('iframe').src = "admin_txt_.php";
-         // setTimeout(reload, 15000);
-     }
-     reload();
-     reload();
-
-     $('#send').on('click', function(){
-     	let valueMsg = document.getElementById('message').value;
-
-     	if(valueMsg != ""){
-     		
-     	$('#php').load('text3.php', {
-     		message: valueMsg
-     	});
-     	
-     	document.getElementById('message').value = "";
-
-     	$('#message').removeClass('border-crimson');
-
-     }else{
-     	$('#message').addClass('border-crimson');
-     }
-     });
-
- 	</script>
+	<script type="text/javascript" src="templates/js/admin_txt.js"></script>
  	<style type="text/css">
  		html,body{
  			overflow-y: auto;
@@ -307,13 +294,6 @@ echo '<div class="alert text-danger aniview reallyslow" data-av-animation="fadeI
 	<script type="text/javascript" src="templates/js/script3.js"></script>
 	<script type="text/javascript" src="templates/mdb/js/mdb.min.js"></script>
 	<script type="text/javascript" src="templates/package/dist/index.umd.js"></script>
-	<!-- <script src="templates/linkify/linkify.min.js"></script>
-	<script src="templates/linkify/linkify-jquery.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-	  $('#messages').linkify();
-	});
-	</script> -->
 
 	
 </body>

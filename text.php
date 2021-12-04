@@ -35,9 +35,6 @@ $sql = "UPDATE students SET unread_msg = '0' WHERE roll_no = '$student'";
 $sql = "SELECT * FROM messages WHERE to_user = '$id' OR from_user = '$id'";
 $query = mysqli_query($conn, $sql);
 $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
-// $sql = "SELECT * FROM messages WHERE from_user = '$id'";
-// $query = mysqli_query($conn, $sql);
-// $received_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 }else{
     $error.=mysqli_error($conn);
@@ -52,7 +49,7 @@ $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
 
  ?>
- <div class="row">
+ <div class="row container">
 <?php foreach($sent_messages as $received_message){ ?>
     <?php if($received_message['from_user'] == $id){ ?>
  	<div class="col-md-8 col-sm-10 col-10 col-lg-8">
@@ -74,16 +71,53 @@ $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
  	<div class="received text-dark">
 
- 		<?php echo base64_decode($received_message['content']); ?>
-    <div class="text-muted" style="font-size: 10px;width: 100% !important;text-align: right;">
+       
+        <?php
+
+         if($received_message['imgUrl'] != ""){
+
+        ?>
+        <img src="<?php echo $received_message['imgUrl']; ?>" class="img-thumbnail">
         <br>
-        <?php echo date($received_message['sent_at']); 
-            if($received_message['read_msg']){
-            ?>
-        <!-- <i class="fas fa-check text-info"></i> -->
-        <?php }else{ ?>
-        <!-- <i class="fas fa-check"></i> -->
+        <br>
+        <?php
+        }else if($received_message['videoUrl'] != ""){
+        ?>
+        <a type="button" data-video="<?php echo $received_message['videoUrl']; ?>" id="<?php echo uniqid('', true).$received_message['id']; ?>" onclick="showVideo(this);">
+            <i class="fas fa-video fa-2x text-info"></i>
+        </a>
+        <br>
+        <?php
+        }else if($received_message['audioUrl'] != ""){
+        ?>
+        <a data-audio="<?php echo $received_message['audioUrl']; ?>" type="button" class="audio-play" id="<?php echo uniqid('', true).$received_message['id']; ?>">
+            <i class="fas fa-play"></i>
+        </a>
+        <br>
+        <br>
+        <?php
+        }else if($received_message['fileUrl'] != ""){
+        ?>
+        <a href="<?php echo $received_message['fileUrl']; ?>">
+            <i class="fas fa-file fa-2x text-warning"></i>
+        </a>
+        <br>
         <?php } ?>
+
+ 		<?php 
+        if($received_message['msg_type'] != "audio"){
+        ?>
+        <?php echo base64_decode($received_message['content']); 
+
+    }else{
+        ?>
+        <!-- <audio src="<?php echo $received_message['content'];?>" controls></audio> -->
+         <a data-audio="<?php echo $received_message['content']; ?>" type="button" class="audio-play" id="<?php echo $received_message['id']; ?>">
+            <i class="fas fa-play"></i>
+        </a>
+    <?php } ?>
+    <div class="text-muted" style="font-size: 10px;width: 100% !important;text-align: right;">
+        <br><?php echo date($received_message['sent_at']); ?>
     </div>
 
  	</div>
@@ -97,7 +131,51 @@ $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
     <div class="col-md-8 col-sm-10 col-10 col-lg-8">
     <div class="sent text-dark">
 
-        <?php echo base64_decode($received_message['content']); ?>
+        <?php
+
+         if($received_message['imgUrl'] != ""){
+
+        ?>
+        <img src="<?php echo $received_message['imgUrl']; ?>" class="img-thumbnail">
+        <br>
+        <br>
+        <?php
+        }else if($received_message['videoUrl'] != ""){
+        ?>
+        <a type="button" data-video="<?php echo $received_message['videoUrl']; ?>" id="<?php echo uniqid('', true).$received_message['id']; ?>" onclick="showVideo(this);">
+            <i class="fas fa-video fa-2x text-info"></i>
+        </a>
+        <br>
+        <?php
+        }else if($received_message['audioUrl'] != ""){
+        ?>
+        <a data-audio="<?php echo $received_message['audioUrl']; ?>" type="button" class="audio-play" id="<?php echo uniqid('', true).$received_message['id']; ?>">
+            <i class="fas fa-play"></i>
+        </a>
+        <br>
+        <br>
+        <?php
+        }else if($received_message['fileUrl'] != ""){
+        ?>
+        <a href="<?php echo $received_message['fileUrl']; ?>">
+            <i class="fas fa-file fa-2x text-warning"></i>
+        </a>
+        <br>
+        <?php } ?>
+
+        <?php 
+        if($received_message['msg_type'] != "audio"){
+        ?>
+        <?php echo base64_decode($received_message['content']); 
+
+    }else{
+        ?>
+        <!-- <audio src="<?php //echo $received_message['content'];?>" controls></audio> -->
+         <a data-audio="<?php echo $received_message['content']; ?>" type="button" class="audio-play" id="<?php echo $received_message['id']; ?>">
+            <i class="fas fa-play"></i>
+        </a>
+    <?php } ?>
+    
         <div class="text-muted" style="font-size: 10px;width: 100% !important;text-align: right;">
             <br><?php echo date($received_message['sent_at']); 
             if($received_message['read_msg']){
@@ -118,21 +196,17 @@ $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
   ?>
  </div>
  </div>
-
+<!-- 
+ <div id="audio"></div>
+ -->
  <a id="target"></a>
 
- <script type="text/javascript">
-     // window.location.href = "#target";
- </script>
+ <script type="text/javascript" src="templates/js/text.js"></script>
 
  <style type="text/css">
       body,html{
         background: url(templates/img/whatsapp.png) !important;
         background-attachment: fixed !important;
-        /*background-repeat: no-repeat !important;*/
-        /*background-position: center !important;*/
-        /*background-size: cover !important;*/
-        /*margin: 50px;*/
      }
  </style>
 

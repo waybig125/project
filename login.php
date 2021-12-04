@@ -8,6 +8,14 @@
 
 				$user_name = htmlspecialchars($_POST['user_name']);
 				$password = htmlspecialchars($_POST['password']);
+				$secretKey = '6Lfy914dAAAAAMoyEoVJRjyRmQTNobI1WCiHEv30';
+        $captcha = $_POST['g-recaptcha-response'];
+
+        if(!$captcha){
+          $error.= "CAPTCHA error";
+          echo $error;
+          exit;
+        }
 
 			if(!$conn){
 
@@ -164,6 +172,7 @@
   <br>
   <label for="inputPassword" class="sr-only login-field  hideShowPassword-hidden login-field-password">Password</label>
   <input type="password" id="inputPassword" value="<?php echo $password; ?>" class="form-control" placeholder="Password" autocomplete="off" name="password" required>
+  <div class="g-recaptcha" data-sitekey="6Lfy914dAAAAACGvIfL0WeCz9pO3O1OR795PD8J3" style="max-width: 200px;"></div>
   <div class="checkbox mb-3">
     <label title="By checking the box you agree to the agreement">
       <input type="checkbox" value="accept" required> I accept the
@@ -190,6 +199,7 @@
 	</div>
 
 	<script type="text/javascript" src="templates/js/jquery.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="templates/slider/responsiveslides.min.js"></script>
