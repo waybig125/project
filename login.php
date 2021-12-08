@@ -41,30 +41,60 @@
 				$results = mysqli_fetch_assoc($query);
 
 				if($rows2 == 1){
+					$string = base64_encode('admin');
+
+				// Store the cipher method
+				$ciphering = "AES-128-CTR";
+
+				// Use OpenSSl Encryption method
+				$iv_length = openssl_cipher_iv_length($ciphering);
+				$options = 0;
+
+				// Non-NULL Initialization Vector for encryption
+				$encryption_iv = 'xxxxxxxxxxxxxxxxx';
+
+				// Store the encryption key
+				$encryption_key = "key";
+
+				// Use openssl_encrypt() function to encrypt the data
+				$encryption = openssl_encrypt($string, $ciphering,
+							$encryption_key, $options, $encryption_iv);
+
 					setcookie("logged_in", true, time() + (864000) * 7);
 
          	setcookie("user_name", $user_name, time() + (864000) * 7);
 
-         	setcookie("previllages", base64_encode('admin'), time() + (864000) * 7);
+         	setcookie("previllages", $encryption, time() + (864000) * 7);
 
          	header('Location: index.php');
 				}
 
 				if($rows == 1 && $results){
 
-					//login details are correct
+					/$string = base64_encode($results['previllages']);
 
-					// session_start();
+					// Store the cipher method
+					$ciphering = "AES-128-CTR";
 
-					// $_SESSION['logged_in'] = true;
-					// $_SESSION['user_name'] = $user_name;
-					// echo "<script>window.location.href='index.php'</script>";
+					// Use OpenSSl Encryption method
+					$iv_length = openssl_cipher_iv_length($ciphering);
+					$options = 0;
+
+					// Non-NULL Initialization Vector for encryption
+					$encryption_iv = 'xxxxxxxxxxxxxxxxx';
+
+					// Store the encryption key
+					$encryption_key = "key";
+
+					// Use openssl_encrypt() function to encrypt the data
+					$encryption = openssl_encrypt($string, $ciphering,
+								$encryption_key, $options, $encryption_iv);
 
 					setcookie("logged_in", true, time() + (864000) * 7);
 
          	setcookie("user_name", $user_name, time() + (864000) * 7);
 
-         	setcookie("previllages", base64_encode($results['previllages']), time() + (864000) * 7);
+         	setcookie("previllages", $encryption, time() + (864000) * 7);
 
          	header('Location: index.php');
 
