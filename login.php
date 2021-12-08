@@ -8,7 +8,7 @@
 
 				$user_name = htmlspecialchars($_POST['user_name']);
 				$password = htmlspecialchars($_POST['password']);
-				$secretKey = '6Lfy914dAAAAAMoyEoVJRjyRmQTNobI1WCiHEv30';
+				$secretKey = 'xxxxxxxxx';
         $captcha = $_POST['g-recaptcha-response'];
 
         if(!$captcha){
@@ -172,7 +172,7 @@
   <br>
   <label for="inputPassword" class="sr-only login-field  hideShowPassword-hidden login-field-password">Password</label>
   <input type="password" id="inputPassword" value="<?php echo $password; ?>" class="form-control" placeholder="Password" autocomplete="off" name="password" required>
-  <div class="g-recaptcha" data-sitekey="6Lfy914dAAAAACGvIfL0WeCz9pO3O1OR795PD8J3" style="max-width: 200px;"></div>
+  <div class="g-recaptcha" data-sitekey="xxxxxx" style="max-width: 200px;"></div>
   <div class="checkbox mb-3">
     <label title="By checking the box you agree to the agreement">
       <input type="checkbox" value="accept" required> I accept the
