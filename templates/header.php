@@ -13,7 +13,26 @@ Java Script must be enabled
           if($conn ?? false && isset($_COOKIE['logged_in'])){
             // echo "logged_in ";
             $user_name = $_COOKIE['user_name'] ?? "";
-            $previllages = base64_decode($_COOKIE['previllages']) ?? "";
+            $previllages = $_COOKIE['previllages'] ?? "";
+            
+            // Store the cipher method
+            $ciphering = "AES-128-CTR";
+
+            $iv_length = openssl_cipher_iv_length($ciphering);
+            $options = 0;
+
+            // Non-NULL Initialization Vector for decryption
+            $decryption_iv = '1234567891011121';
+
+            // Store the decryption key
+            $decryption_key = "previllages";
+
+            // Use openssl_decrypt() function to decrypt the data
+            $previllages = openssl_decrypt ($previllages, $ciphering,
+            $decryption_key, $options, $decryption_iv);
+
+            $previllages = base64_decode($previllages);
+
             if($previllages == "student"){
             $sql = "SELECT dpUrl FROM students WHERE roll_no = '$user_name'";
             }else if($previllages == "admin"){

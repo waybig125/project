@@ -1,6 +1,25 @@
   <?php
+    
+$user_name = $_COOKIE['user_name'] ?? "";
+$previllages = $_COOKIE['previllages'] ?? "";
 
-  $previllages = base64_decode($_COOKIE['previllages']) ?? "";
+// Store the cipher method
+$ciphering = "AES-128-CTR";
+
+$iv_length = openssl_cipher_iv_length($ciphering);
+$options = 0;
+
+// Non-NULL Initialization Vector for decryption
+$decryption_iv = 'xxxxxxxxxxxxxxxxx';
+
+// Store the decryption key
+$decryption_key = "key";
+
+// Use openssl_decrypt() function to decrypt the data
+$previllages = openssl_decrypt ($previllages, $ciphering,
+$decryption_key, $options, $decryption_iv);
+
+$previllages = base64_decode($previllages);
 
     if($previllages == "admin"){
 
@@ -36,7 +55,7 @@
     <?php include 'templates/preloader.php'; ?>
       <title>Upload Image</title>
 
-       <link rel="stylesheet" type="text/css" href="templates/css/style.css">
+       <link rel="stylesheet" type="text/css" href="templates/css/style.min.css">
       <link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
       <link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="templates/mdb/css/mdb.dark.min.css">
@@ -84,7 +103,7 @@
   <script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="templates/slider/responsiveslides.min.js"></script>
   <script src="templates/dist/jquery.aniview.js"></script>
-  <script type="text/javascript" src="templates/js/script.js"></script>
+  <script type="text/javascript" src="templates/js/script.min.js"></script>
   <script type="text/javascript" src="templates/mdb/js/mdb.min.js"></script>
 
   </body>

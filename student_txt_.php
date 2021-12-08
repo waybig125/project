@@ -4,7 +4,26 @@
 $error = "";
 $user_name = $_COOKIE['user_name'] ?? "";
 
-$previllages = base64_decode($_COOKIE['previllages']) ?? "";
+$user_name = $_COOKIE['user_name'] ?? "";
+$previllages = $_COOKIE['previllages'] ?? "";
+
+// Store the cipher method
+$ciphering = "AES-128-CTR";
+
+$iv_length = openssl_cipher_iv_length($ciphering);
+$options = 0;
+
+// Non-NULL Initialization Vector for decryption
+$decryption_iv = 'xxxxxxxxxxxxxxxxx';
+
+// Store the decryption key
+$decryption_key = "key";
+
+// Use openssl_decrypt() function to decrypt the data
+$previllages = openssl_decrypt ($previllages, $ciphering,
+$decryption_key, $options, $decryption_iv);
+
+$previllages = base64_decode($previllages);
 
     if($previllages == "student"){
 
@@ -48,7 +67,7 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
  </head>
  <body>
  
- <link rel="stylesheet" type="text/css" href="templates/css/style2.css">
+ <link rel="stylesheet" type="text/css" href="templates/css/style2.min.css">
  <link rel="stylesheet" type="text/css" href="templates/mdb/css/mdb.dark.min.css">
  <link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
  <br>
@@ -192,7 +211,7 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
  <a id="target"></a>
  <script type="text/javascript" src="templates/js/jquery.min.js"></script>
  <!-- <script src="templates/replace/replace_anchor_links.min.js"></script> -->
- <script type="text/javascript" src="templates/js/student_txt_.js"></script>
+ <script type="text/javascript" src="templates/js/student_txt_.min.js"></script>
  <style type="text/css">
       body,html{
         background: url(templates/img/whatsapp.png) !important;

@@ -1,64 +1,44 @@
 <?php include 'templates/sql/db.php'; ?>
 <?php
+$error = "";
 
-	$previllages = base64_decode($_COOKIE['previllages']) ?? "";
+$user_name = $_COOKIE['user_name'] ?? "";
+$previllages = $_COOKIE['previllages'] ?? "";
 
-	ini_set('post_max_size', '40M');
-	ini_set('upload_max_filesize', '40M');
-	ini_set('max_execution_time', '300');
+// Store the cipher method
+$ciphering = "AES-128-CTR";
 
-	ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+$iv_length = openssl_cipher_iv_length($ciphering);
+$options = 0;
 
-	if($previllages == "admin"){
+// Non-NULL Initialization Vector for decryption
+$decryption_iv = 'xxxxxxxxxxxxxxxxx';
 
+// Store the decryption key
+$decryption_key = "key";
 
-	$student = $_GET['student'] ?? "";
-	$student_cookie = $_COOKIE['student'];
-	$from_user = $_COOKIE['student']."_student";
-	if($conn){
-		$sql = "SELECT * FROM students WHERE roll_no = '$student'";
- 		$query = mysqli_query($conn, $sql);
- 		$fetch = mysqli_fetch_assoc($query);
+// Use openssl_decrypt() function to decrypt the data
+$previllages = openssl_decrypt ($previllages, $ciphering,
+$decryption_key, $options, $decryption_iv);
 
- 		if($fetch){
+$previllages = base64_decode($previllages);
+ini_set('post_max_size', '40M');ini_set('upload_max_filesize', '40M');ini_set('max_execution_time', '300');ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+	if($previllages == "admin"){$student = $_GET['student'] ?? "";$student_cookie = $_COOKIE['student'];$from_user = $_COOKIE['student']."_student";
+	if($conn){$sql = "SELECT * FROM students WHERE roll_no = '$student'";$query = mysqli_query($conn, $sql);$fetch = mysqli_fetch_assoc($query);
 
- 			$id = $fetch['id'];
- 			$from_user = $id."_student";
-
+ 	if($fetch){$id = $fetch['id'];$from_user = $id."_student";
  		}
 	
- 	}else{
- 			$error = mysqli_error($conn);
+ 	}else{$error = mysqli_error($conn);
  		}
 
-	if(isset($_GET['student'])){
-	setcookie('student', $student, time() + 864000);
-	}
-
-	$error = "";
-
- 	if(isset($_POST['message'])){
-
- 		if($conn){
-
- 		if($_POST['msg_type'] == "text"){
-
- 		$message = base64_encode(htmlspecialchars($_POST['message']));
-
- 		}else{
- 			$message = $_POST['message'];
- 		}
-
- 		$message = mysqli_real_escape_string($conn, $message);
- 		$msg_type = $_POST['msg_type'];
- 		$imgUrl = $_POST['imgUrl'];
- 		$videoUrl = $_POST['videoUrl'];
- 		$audioUrl = $_POST['audioUrl'];
- 		$fileUrl = $_POST['fileUrl'];
- 		$roll_no = $_COOKIE['student'] ?? "";
- 		$sql = "SELECT * FROM students WHERE roll_no = '$roll_no'";
- 		$query = mysqli_query($conn, $sql);
- 		$fetch = mysqli_fetch_assoc($query);
+	if(isset($_GET['student'])){setcookie('student', $student, time() + 864000);
+	}$error = "";
+	if(isset($_POST['message'])){
+	if($conn){
+	if($_POST['msg_type'] == "text"){$message = base64_encode(htmlspecialchars($_POST['message']));
+}else{$message = $_POST['message'];
+ 		}$message = mysqli_real_escape_string($conn, $message);$msg_type = $_POST['msg_type'];$imgUrl = $_POST['imgUrl'];$videoUrl = $_POST['videoUrl'];$audioUrl = $_POST['audioUrl'];$fileUrl = $_POST['fileUrl'];$roll_no = $_COOKIE['student'] ?? "";$sql = "SELECT * FROM students WHERE roll_no = '$roll_no'";$query = mysqli_query($conn, $sql);$fetch = mysqli_fetch_assoc($query);
 
  		if($fetch){
 

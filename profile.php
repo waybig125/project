@@ -31,8 +31,27 @@
 		$section = '';
 
 	if($conn){
+	
+	$user_name = $_COOKIE['user_name'] ?? "";
+	$previllages = $_COOKIE['previllages'] ?? "";
 
-		$previllages = base64_decode($_COOKIE['previllages']) ?? "";
+	// Store the cipher method
+	$ciphering = "AES-128-CTR";
+
+	$iv_length = openssl_cipher_iv_length($ciphering);
+	$options = 0;
+
+	// Non-NULL Initialization Vector for decryption
+	$decryption_iv = 'xxxxxxxxxxxxxxxxx';
+
+	// Store the decryption key
+	$decryption_key = "key";
+
+	// Use openssl_decrypt() function to decrypt the data
+	$previllages = openssl_decrypt ($previllages, $ciphering,
+	$decryption_key, $options, $decryption_iv);
+
+	$previllages = base64_decode($previllages);
 
 		if($previllages == "admin"){
 
@@ -78,7 +97,7 @@
 
 	?>
 	<title>Profile Settings</title>
-	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
+	<link rel="stylesheet" type="text/css" href="templates/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/mdb/css/mdb.dark.min.css">
@@ -132,13 +151,13 @@
 		Name: &ensp;&ensp;&ensp;<span class="text-gray" id="name" title="<?php echo $name; ?>"><?php echo $name; ?></span>
 		<br>
 		<br>
-		<?php echo $text;?>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<span class="text-gray" id="f_name" title="<?php echo $fatherName; ?>"><?php echo $fatherName; ?></span>
+		<?php echo $text;?>&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;<span class="text-gray" id="f_name" title="<?php echo $fatherName; ?>"><?php echo $fatherName; ?></span>
 		<br>
 		<br>
 		Class: &ensp;&ensp;&ensp;<span class="text-gray"><?php echo $class; ?></span>
 		<br>
 		<br>
-		Section: &nbsp;<?php echo $section; ?>&ensp;&ensp;<span class="text-gray" style="font-weight: 5000;background: <?php echo $section; ?>;width: 20px;height: 20px;display: inline-block;color: slategray;border: 1px solid black;" title="<?php echo $section; ?> "></span>
+		Section: <?php echo $section; ?>&ensp;&ensp;<span class="text-gray" style="font-weight: 5000;background: <?php echo $section; ?>;width: 20px;height: 20px;display: inline-block;color: slategray;border: 1px solid black;" title="<?php echo $section; ?> "></span>
 		<span>
 			
 			<?php //echo $section; ?> 
@@ -239,7 +258,7 @@
 	<script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="templates/slider/responsiveslides.min.js"></script>
 	<script src="templates/dist/jquery.aniview.js"></script>
-	<script type="text/javascript" src="templates/js/script.js"></script>
+	<script type="text/javascript" src="templates/js/script.min.js"></script>
 	<script type="text/javascript" src="templates/mdb/js/mdb.min.js"></script>
 	<!-- <script type="text/javascript" src="templates/plugin/js/tinyslide.js"></script> -->	
 	<script type="text/javascript" src="templates/package/dist/index.umd.js"></script>

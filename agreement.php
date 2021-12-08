@@ -5,7 +5,7 @@
 	<?php include 'templates/sql/db.php'; ?>
 	<?php include 'templates/preloader.php'; ?>
 	<title>Agreement</title>
-	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
+	<link rel="stylesheet" type="text/css" href="templates/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/mdb/css/mdb.dark.min.css">
@@ -175,7 +175,7 @@
 	<script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="templates/slider/responsiveslides.min.js"></script>
 	<script src="templates/dist/jquery.aniview.js"></script>
-	<script type="text/javascript" src="templates/js/script.js"></script>
+	<script type="text/javascript" src="templates/js/script.min.js"></script>
 	<script type="text/javascript" src="templates/mdb/js/mdb.min.js"></script>
 	<!-- <script type="text/javascript" src="templates/plugin/js/tinyslide.js"></script> -->	
 	<script type="text/javascript" src="templates/package/dist/index.umd.js"></script>

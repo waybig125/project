@@ -17,8 +17,25 @@
 				//connection is true
 
 				$user_name = $_COOKIE['user_name'] ?? "";
+				$previllages = $_COOKIE['previllages'] ?? "";
 
-				$previllages = base64_decode($_COOKIE['previllages']) ?? "";
+				// Store the cipher method
+				$ciphering = "AES-128-CTR";
+
+				$iv_length = openssl_cipher_iv_length($ciphering);
+				$options = 0;
+
+				// Non-NULL Initialization Vector for decryption
+				$decryption_iv = 'xxxxxxxxxxxxxxxxx';
+
+				// Store the decryption key
+				$decryption_key = "key";
+
+				// Use openssl_decrypt() function to decrypt the data
+				$previllages = openssl_decrypt ($previllages, $ciphering,
+				$decryption_key, $options, $decryption_iv);
+
+				$previllages = base64_decode($previllages);
 
 				$password = htmlspecialchars($_POST['old']);
 
@@ -163,7 +180,7 @@
 
 	<!-- <script src="templates/password/hideShowPassword.min.js"></script> -->
 
-	<script type="text/javascript" src="templates/js/script2.js"></script>
+	<script type="text/javascript" src="templates/js/script2.min.js"></script>
 
 	<script type="text/javascript">
 		// $('#old').hidePassword('focus', {

@@ -28,7 +28,7 @@ if(isset($_GET['remove_account']) && $confirm == "true"){
 	</title>
 	<?php include 'templates/meta.php'; ?>
 	<?php //include 'templates/preloader.php'; ?>
-	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
+	<link rel="stylesheet" type="text/css" href="templates/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/mdb/css/mdb.dark.min.css">

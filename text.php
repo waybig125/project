@@ -201,7 +201,7 @@ $sent_messages = mysqli_fetch_all($query, MYSQLI_ASSOC);
  -->
  <a id="target"></a>
 
- <script type="text/javascript" src="templates/js/text.js"></script>
+ <script type="text/javascript" src="templates/js/text.min.js"></script>
 
  <style type="text/css">
       body,html{

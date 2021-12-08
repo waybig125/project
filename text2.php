@@ -172,13 +172,13 @@ $sql = "UPDATE messages SET read_msg = '1' WHERE to_user = '$id'";
 
 </div>
 
-<div id="audio"></div>
+<!-- <div id="audio"></div> -->
 
 <a id="target"></a>
 
 
 
- <script type="text/javascript" src="templates/js/text2.js"></script>
+ <script type="text/javascript" src="templates/js/text2.min.js"></script>
 
 
  <style type="text/css">

@@ -5,7 +5,7 @@
 	<?php include 'templates/sql/db.php'; ?>
 	<?php include 'templates/preloader.php'; ?>
 	<title>About</title>
-	<link rel="stylesheet" type="text/css" href="templates/css/style.css">
+	<link rel="stylesheet" type="text/css" href="templates/css/style.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="templates/mdb/css/mdb.dark.min.css">
@@ -38,17 +38,8 @@
 			<h2 class="text-success family-monospace" id="typing">About Us&nbsp;</h2>
 			<br>
 			<hr>
-			<?php 
-
-			if($random != 2){
-
-			 ?>
 
 	 <div style="color: limegreen;background: linear-gradient(90deg, black, transparent);">
-
-
-<?php } ?>
-
 			 
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -57,15 +48,7 @@
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-	<?php 
-
-	if($random != 2){
-
-	 ?>
-
 	 </div>
-
-<?php } ?>
 
 		</div>
 	</div>
@@ -157,7 +140,7 @@
 	<script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="templates/slider/responsiveslides.min.js"></script>
 	<script src="templates/dist/jquery.aniview.js"></script>
-	<script type="text/javascript" src="templates/js/script.js"></script>
+	<script type="text/javascript" src="templates/js/script.min.js"></script>
 	<script type="text/javascript" src="templates/mdb/js/mdb.min.js"></script>
 	<!-- <script type="text/javascript" src="templates/plugin/js/tinyslide.js"></script> -->
 	<script type="text/javascript" src="templates/package/dist/index.umd.js"></script>
